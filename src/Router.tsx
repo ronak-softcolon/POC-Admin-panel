@@ -14,6 +14,9 @@ import IndustryList from "./pages/protectedpages/Industry/IndustryList";
 import ProfessionList from "./pages/protectedpages/profession/ProfessionList";
 import UserView from "./pages/protectedpages/Users/UserView";
 import Setting from "./pages/protectedpages/setting/Setting";
+import BlockUsermgmt from "./pages/protectedpages/blockuser/BlockUsermgmt";
+import CashRequest from "./pages/protectedpages/cash/CashRequest";
+import MediaList from "./pages/protectedpages/MediaList/MediaList";
 
 const Router = () => {
     return (
@@ -39,8 +42,20 @@ const Router = () => {
                     <Route index element={<ProfessionList />} />
                 </Route>
 
+                <Route path="/block-user">
+                    <Route index element={<BlockUsermgmt />} />
+                </Route>
+
+                <Route path="/cash-request">
+                    <Route index element={<CashRequest />} />
+                </Route>
+
                 <Route path="/setting">
                     <Route index element={<Setting />} />
+                </Route>
+
+                <Route path="/media">
+                    <Route index element={<MediaList />} />
                 </Route>
 
                 {/* industry  */}

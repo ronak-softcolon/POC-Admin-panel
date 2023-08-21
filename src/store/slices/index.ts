@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
-import { persistReducer } from "redux-persist";
+import { persistReducer, persistStore } from "redux-persist";
 import { encryptTransform } from "redux-persist-transform-encrypt";
 
 import authSlice from "./authSlice";

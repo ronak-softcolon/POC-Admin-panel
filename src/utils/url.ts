@@ -21,6 +21,9 @@ export const UPDATE_ADMIN = "/admin/profile";
 export const GET_ALL_USER = "/admin/users";
 export const GET_ID_USER_USER = "/admin/users/details/";
 
+// BlockUser
+export const GET_ALL_BLOCK_USER = "/block/user";
+
 // Industry
 export const ADD_INDUSTRY = "/industry/add";
 export const GET_ALLINDUSTRY = "/industry";

@@ -74,7 +74,7 @@ const TotalSpent = (props: LineChartProps) => {
                             </Text>
                         </Flex>
                     </Flex>
-                    <Box w={"full"}>
+                    <Box minH="260px" minW="75%">
                         <LineChart chartData={props.linedata} chartOptions={props.lineoption} />
                     </Box>
                 </Flex>

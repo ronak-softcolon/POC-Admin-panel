@@ -458,3 +458,7 @@ export const AdminContractByIndustryData = [
         info: true
     }
 ];
+
+export const imageExtensions = [".jpg", ".jpeg", ".png", ".gif"];
+export const videoExtensions = [".mp4", ".webm", ".ogg", ".avi", ".mkv", ".mov", ".wmv", ".avchd", ".flv"];
+export const docExtensions = [".pdf", ".doc", ".docx", ".odt", ".rtf", ".tex", ".txt", ".wpd"];

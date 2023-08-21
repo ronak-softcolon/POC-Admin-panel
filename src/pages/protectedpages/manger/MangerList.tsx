@@ -24,6 +24,7 @@ import { AdminProps, MANAGER_STATUS } from "./manager.types";
 import InputSelect from "../../../components/filters/InputSelect";
 import MySelect from "../../../components/filters/MySelect";
 import { endOfDay, startOfDay } from "date-fns";
+import MainLoader from "../../../components/loader/MainLoader";
 
 const ManagerList = () => {
     const { navigate, t, toast } = useHelperHook();
@@ -39,13 +40,16 @@ const ManagerList = () => {
     } = useAdminHook();
 
     const [tableData, setTableData] = useState<AdminProps[]>([]);
+
     async function fetchData() {
+        setIsLoading(true);
         try {
             const managerData = await getAllManager();
             setAdminData(managerData);
             setTableData(managerData);
         } catch (error) {
             console.log({ error });
+            setIsLoading(false);
         }
     }
 
@@ -94,6 +98,7 @@ const ManagerList = () => {
         }
     );
 
+    // All Filter
     const handleFilteredData = () => {
         let filterData = adminData.length > 0 ? [...adminData] : [];
 
@@ -357,7 +362,7 @@ const ManagerList = () => {
                     column={column}
                     data={tableData}
                     handleSubmit={handleEdit}
-                    progressPending={isLoading}
+                    // progressPending={isLoading}
                     onSelectedRowsChange={handleRowSelected}
                     isSelector={true}
                 />

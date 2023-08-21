@@ -6,13 +6,15 @@ interface authState {
     token: null | string;
     profileImage: null | string;
     userName: string;
+    refreshToken: null | string;
 }
 
 // Define the initial state using that type
 const initialState: authState = {
-    token: "",
+    token: null,
     profileImage: null,
-    userName: ""
+    userName: "",
+    refreshToken: null
 };
 
 const authSlice = createSlice({
@@ -23,8 +25,9 @@ const authSlice = createSlice({
             return initialState;
         },
         setCredentials: (state, action) => {
-            const { access_token } = action.payload;
+            const { access_token, refresh_token } = action.payload;
             state.token = access_token;
+            state.refreshToken = refresh_token;
         },
         setProfileData: (state, action) => {
             const { userName, profileImage } = action.payload;

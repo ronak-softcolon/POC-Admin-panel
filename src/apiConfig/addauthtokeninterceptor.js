@@ -1,6 +1,5 @@
-// import { setRefreshToken } from "../store/auth";
+import { setCredentials, resetState } from "../store/slices/authSlice";
 import client from "./client";
-// import { resetState } from "../store/auth";
 import axios from "axios";
 import { BASE_URL } from "../utils/environments";
 
@@ -30,6 +29,7 @@ export default function addAuthTokenInterceptor(store) {
                     refreshToken &&
                     error?.response?.status === 406 &&
                     !originalConfig._retry
+
                 ) {
                     // If user login and have refresh token
                     isRefreshTokenUpdating = true;
@@ -45,7 +45,7 @@ export default function addAuthTokenInterceptor(store) {
                         let config = {
                             method: "post",
                             maxBodyLength: Infinity,
-                            url: `${BASE_URL}/company/auth/access-token`,
+                            url: `${BASE_URL}/admin/auth/generate/access-token`,
                             headers: {
                                 "Content-Type": "application/json"
                             },
@@ -55,26 +55,28 @@ export default function addAuthTokenInterceptor(store) {
                         const result = await axios.request(config);
                         //console.log({ result });
                         isRefreshTokenUpdating = false;
-                        // store.dispatch(setRefreshToken(result.data));
+                        store.dispatch(setCredentials(result.data.data));
                         return client(originalConfig);
                     } catch (error) {
-                        //console.log({ Token: JSON.stringify(error) });
                         isRefreshTokenUpdating = false;
-                        // store.dispatch(resetState());
+                        store.dispatch(resetState());
                         return (window.location = "/login");
+
                     }
                 } else if (isRefreshTokenUpdating) {
                     // If refresh token is updating
                     await isRefreshTokenDone();
                     //console.log("isRefreshTokenUpdating");
                     return client(originalConfig);
-                } else if (token && token.length === 0) {
-                    store.dispatch(resetState());
-                    window.location = "/login";
-                    return Promise.reject(error.response.data);
-                } else {
-                    return Promise.reject(error.response.data);
                 }
+                // else if (!token) {
+                //     store.dispatch(resetState());
+                //     window.location = "/login";
+                //     return Promise.reject(error.response.data);
+                // }
+                // else {
+                //     return Promise.reject(error.response.data);
+                // }
             }
             return Promise.reject(error);
         }

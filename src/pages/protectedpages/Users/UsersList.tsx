@@ -18,6 +18,7 @@ import SearchButton from "../../../components/button/SearchButton";
 import ResetButton from "../../../components/button/ResetButton";
 import client from "../../../apiConfig/client";
 import { AxiosError } from "axios";
+import MainLoader from "../../../components/loader/MainLoader";
 
 const UserList = () => {
     const { t, navigate, toast } = useHelperHook();
@@ -141,7 +142,7 @@ const UserList = () => {
                 return (
                     <Flex alignItems={"center"} onClick={() => navigate(`/users/details/${row?._id}`, { state: row })}>
                         <WrapItem pr={2}>
-                            <Avatar src={row?.profileImage?.url} />
+                            <Avatar size={"sm"} src={row?.profileImage?.url} />
                         </WrapItem>
                         <Text
                             color={globalStyles.colors.mainColor}
@@ -174,10 +175,10 @@ const UserList = () => {
             id: 3,
             name: <TableHeading heading={t("コイン")} />,
             selector: (row: any) => row?.coin,
-            sortable: false,
+            sortable: true,
             wrap: true,
             omit: false,
-            width: "100px",
+            width: "130px",
             cell: (row: any) => {
                 return <UserTable column={row?.coin ?? "--"} />;
             }
@@ -210,7 +211,7 @@ const UserList = () => {
             id: 10,
             name: <TableHeading heading={t("携帯電話")} />,
             selector: (row: any) => row?.contactNumber,
-            sortable: true,
+            sortable: false,
             wrap: true,
             width: "150px",
             cell: (row: any) => {
@@ -219,7 +220,7 @@ const UserList = () => {
         },
         {
             id: 6,
-            name: <TableHeading heading={t("警告回数（3）")} />,
+            name: <TableHeading heading={t("警告回数")} />,
             selector: (row: any) => row?.警告回数,
             sortable: false,
             wrap: true,
@@ -308,7 +309,7 @@ const UserList = () => {
             id: 14,
             name: <TableHeading heading={t("性別")} />,
             selector: (row: any) => (
-                <Text flexWrap={"wrap"}>{row?.gender === "MALE" ? "男性" : "FEMALE" ? "女性" : "--"};</Text>
+                <Text flexWrap={"wrap"}>{row?.gender === "MALE" ? "男性" : "FEMALE" ? "女性" : "--"}</Text>
             ),
             sortable: true,
             wrap: true,
@@ -412,7 +413,13 @@ const UserList = () => {
                 </Box>
 
                 <Box rounded={"lg"} bgColor={"white"} px={5}>
-                    <ReactDataTableComponent handleSubmit={handleClick} column={column} data={tableData} />
+                    {isLoading ? (
+                        <div>
+                            <MainLoader height={"50vh"} />
+                        </div>
+                    ) : (
+                        <ReactDataTableComponent handleSubmit={handleClick} column={column} data={tableData} />
+                    )}
                 </Box>
             </>
         </Box>

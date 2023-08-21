@@ -26,7 +26,7 @@ const LoginPage = () => {
         setIsLoading(true);
         try {
             const result = await client.post(ADMIN_AUTH, values);
-            dispatch(setCredentials(result.data.data));
+            dispatch(setCredentials(result?.data?.data));
             navigate("/dashboard");
             toast({
                 title: result.data?.message,
@@ -55,12 +55,6 @@ const LoginPage = () => {
         validationSchema: LoginSchema(t),
         onSubmit
     });
-
-    useEffect(() => {
-        if (localStorage.getItem("data")) {
-            navigate("/");
-        }
-    }, []);
 
     return (
         <Flex align="center" mt={5} flexDir={"column"}>

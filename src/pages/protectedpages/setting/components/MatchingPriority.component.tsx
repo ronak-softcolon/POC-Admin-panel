@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Button, Flex, Input, Table, Tbody, Td, Text, Th, Thead, useDisclosure } from "@chakra-ui/react";
+import { Box, Button, Divider, Flex, Input, Table, Tbody, Td, Text, Th, Thead, useDisclosure } from "@chakra-ui/react";
 import CustomSelectField from "../../../../components/filters/CustomSelect";
 import useHelperHook from "../../../../hooks/useHelperHook";
 import { MATCHING_ROLE } from "../SettingType";
@@ -21,23 +21,14 @@ const MatchingPriority = ({ setFieldTouched, setFieldValue, value }: Props) => {
         setIsEditMode(!isEditMode);
     };
     return (
-        <Box bgColor={"white"} p={4} rounded={"lg"} my={3} mt={2}>
+        <Box bgColor={"white"} p={4} rounded={"lg"} mt={2} position={"relative"}>
             <Text display={"flex"} fontWeight={"bold"} mb={3}>
                 {t("マッチング優先順位")}
             </Text>
             <Box>
                 <Table w={"full"} display={"flex"} justifyContent={"center"} alignItems={"center"}>
                     <Tbody>
-                        <Thead
-                            minWidth={"28rem"}
-                            display={"flex"}
-                            justifyContent={"center"}
-                            alignItems={"center"}
-                            border={"1px solid gray"}
-                        >
-                            新規登録者
-                        </Thead>
-                        <Td display={"flex"} justifyContent={"center"} alignItems={"center"} border={"1px solid gray"}>
+                        <Td display={"flex"} justifyContent={"center"} alignItems={"center"}>
                             {isEditMode ? (
                                 <Flex justifyContent={"space-between"}>
                                     <CustomSelectField
@@ -50,18 +41,23 @@ const MatchingPriority = ({ setFieldTouched, setFieldValue, value }: Props) => {
                                     />
                                 </Flex>
                             ) : (
-                                <Box>
-                                    {value.map((result: optionTypes) => (
-                                        <Td
-                                            minWidth={"28rem"}
-                                            display={"flex"}
-                                            justifyContent={"center"}
-                                            alignItems={"center"}
-                                        >
-                                            {result.value}
-                                        </Td>
-                                    ))}
-                                </Box>
+                                <>
+                                    <Box>
+                                        {value.map((result: optionTypes) => (
+                                            <>
+                                                <Td
+                                                    minWidth={"28rem"}
+                                                    display={"flex"}
+                                                    justifyContent={"center"}
+                                                    alignItems={"center"}
+                                                    border={"1px solid gray"}
+                                                >
+                                                    {result.value}
+                                                </Td>
+                                            </>
+                                        ))}
+                                    </Box>
+                                </>
                             )}
                         </Td>
                     </Tbody>

@@ -12,8 +12,11 @@ registerLocale("ja", ja);
 // redux store
 
 import { Provider } from "react-redux";
-import { store, persistor } from "./store";
+import { store } from "./store";
 import { PersistGate } from "redux-persist/integration/react";
+import { persistStore } from "redux-persist";
+
+const persistor = persistStore(store);
 
 // chakra-ui
 

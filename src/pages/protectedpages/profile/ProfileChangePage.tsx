@@ -7,6 +7,7 @@ import { GET_ADMIN_PROFILE } from "../../../utils/url";
 import { useAppDispatch } from "../../../store/hooks";
 import { selectProfileImage, setProfileData } from "../../../store/slices/authSlice";
 import { AxiosError } from "axios";
+import MainLoader from "../../../components/loader/MainLoader";
 
 const ProfileChange = () => {
     const [mode, setMode] = useState<boolean>(true);
@@ -44,7 +45,9 @@ const ProfileChange = () => {
         <div>
             {isLoading ? (
                 // <LoaderIcon />
-                <div>loading...</div>
+                <div>
+                    <MainLoader />
+                </div>
             ) : (
                 <>
                     {mode ? (

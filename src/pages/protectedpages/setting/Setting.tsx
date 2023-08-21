@@ -209,7 +209,6 @@ const Setting = () => {
             </Flex>
 
             {/* Box 1  */}
-
             <MatchingPriority setFieldTouched={setFieldTouched} setFieldValue={setFieldValue} value={values.matching} />
 
             {/* <Box bgColor={"white"} p={4} rounded={"lg"} my={3} mt={2}>
@@ -279,7 +278,7 @@ const Setting = () => {
             </Box> */}
 
             {/* Box 2  */}
-            <Box bgColor={"white"} p={4} rounded={"lg"} my={3} mt={2}>
+            <Box bgColor={"white"} p={4} pb={1} rounded={"lg"} my={2} mt={2}>
                 <Text display={"flex"} fontWeight={"bold"}>
                     画像、動画保存期限:
                 </Text>
@@ -291,8 +290,9 @@ const Setting = () => {
                         alignItems={"center"}
                         bgColor={"white"}
                         rounded={"lg"}
+                        position={"relative"}
                     >
-                        <Flex gap={5}>
+                        <Flex gap={5} w={"64"}>
                             <CustomNumberField
                                 name="dataRemoveTime"
                                 Type="number"
@@ -304,22 +304,16 @@ const Setting = () => {
                             />
                             <Text py={4}>時間オート削除</Text>
                         </Flex>
-                    </Box>
-                    <Box display={"flex"} justifyContent={"flex-end"}>
-                        <Button
-                            type="submit"
-                            color={"white"}
-                            bgColor={globalStyles.colors.mainColor}
-                            isLoading={isTimeLoading}
-                        >
-                            更新
-                        </Button>
+                        <Box display={"flex"} justifyContent={"flex-end"} position={"absolute"} right={"0"}>
+                            <Button type="submit" color={"white"} bgColor={globalStyles.colors.mainColor}>
+                                更新
+                            </Button>
+                        </Box>
                     </Box>
                 </form>
             </Box>
 
             {/* Box 3  */}
-
             {/* <Box bgColor={"white"} p={4} rounded={"lg"} my={3} mt={2}>
                 <Text display={"flex"} fontWeight={"bold"} mb={3}>
                     問い合わせ先メールアドレス:
@@ -394,7 +388,7 @@ const Setting = () => {
             </Box> */}
 
             {/* Box 4  */}
-            <Box bgColor={"white"} p={4} rounded={"lg"} my={3} mt={2}>
+            <Box bgColor={"white"} p={4} pb={1} rounded={"lg"} my={2} mt={2}>
                 <Text display={"flex"} fontWeight={"bold"}>
                     {t("無料マッチング回数: ")}
                 </Text>
@@ -406,33 +400,40 @@ const Setting = () => {
                         alignItems={"center"}
                         bgColor={"white"}
                         rounded={"lg"}
+                        position={"relative"}
                     >
-                        <Box display={"flex"} justifyContent={"center"} alignItems={"center"} w={16} h={8}>
-                            <Flex gap={5}>
-                                <CustomNumberField
-                                    name="freeMatch"
-                                    Type="number"
-                                    values={values.freeMatch}
-                                    handleChange={handleChange}
-                                    handleBlur={handleBlur}
-                                    errors={errors.freeMatch}
-                                    touched={touched.freeMatch}
-                                />
-                                <Text py={4} px={12}>
-                                    回
-                                </Text>
+                        <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
+                            <Flex w={64} gap={5}>
+                                <Box>
+                                    <CustomNumberField
+                                        name="freeMatch"
+                                        Type="number"
+                                        values={values.freeMatch}
+                                        handleChange={handleChange}
+                                        handleBlur={handleBlur}
+                                        errors={errors.freeMatch}
+                                        touched={touched.freeMatch}
+                                    />
+                                </Box>
+                                <Text py={4}>回</Text>
                             </Flex>
                         </Box>
-                    </Box>
-                    <Box display={"flex"} justifyContent={"flex-end"}>
-                        <Button
-                            type="submit"
-                            color={"white"}
-                            bgColor={globalStyles.colors.mainColor}
-                            isLoading={isAddLoading}
+                        <Box
+                            display={"flex"}
+                            justifyContent={"flex-end"}
+                            position={"absolute"}
+                            right={"0"}
+                            bottom={"2"}
                         >
-                            更新
-                        </Button>
+                            <Button
+                                type="submit"
+                                color={"white"}
+                                bgColor={globalStyles.colors.mainColor}
+                                // isLoading={isTimeLoading}
+                            >
+                                更新
+                            </Button>
+                        </Box>
                     </Box>
                 </form>
             </Box>

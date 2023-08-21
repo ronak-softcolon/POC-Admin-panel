@@ -31,7 +31,7 @@ import { useEffect, useState } from "react";
 import client from "../../apiConfig/client";
 import { GET_ADMIN_PROFILE } from "../../utils/url";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { selectProfileImage, selectUserName, setProfileData } from "../../store/slices/authSlice";
+import { resetState, selectProfileImage, selectUserName, setProfileData } from "../../store/slices/authSlice";
 const AuthHeader = ({ open }: any) => {
     const dispatch = useAppDispatch();
     const profileImage = useAppSelector(selectProfileImage);
@@ -43,8 +43,13 @@ const AuthHeader = ({ open }: any) => {
     const { t } = useTranslation();
 
     const handleLogout = () => {
-        localStorage.removeItem("data");
+        // localStorage.removeItem("data");
+        dispatch(resetState());
         navigate("/login");
+    };
+
+    const handleHome = () => {
+        navigate("/dashboard");
     };
 
     const handelPageChange = (page: string) => {
@@ -108,9 +113,7 @@ const AuthHeader = ({ open }: any) => {
                     direction="row"
                     alignItems="center"
                     _hover={{ cursor: "pointer" }}
-                    onClick={() => {
-                        navigate("/dashboard");
-                    }}
+                    onClick={handleHome}
                 >
                     <Box width={"32"}>{"TokMay"}</Box>
                 </Stack>

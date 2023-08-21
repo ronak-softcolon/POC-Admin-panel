@@ -34,7 +34,9 @@
         "yes": "はい",
         "no": "いいえ",
         "user_status": "ユーザーステータス",
-        "Profession": "職業"
+        "Profession": "職業",
+        "male": "男性",
+        "female": "女性"
     },
 
     "status": {

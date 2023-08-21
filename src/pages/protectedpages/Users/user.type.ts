@@ -32,9 +32,9 @@ export const USER_ROLE = (t: any) => {
 export const USER_GENDER = (t: any) => {
     return [
         // { label: t("contract.all"), value: "" },
-        { label: t("男性"), value: "MALE" },
+        { label: t("common.male"), value: "MALE" },
         {
-            label: t("女性"),
+            label: t("common.female"),
             value: "FEMALE"
         }
     ];

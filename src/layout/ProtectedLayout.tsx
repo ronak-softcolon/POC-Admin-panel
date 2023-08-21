@@ -20,6 +20,8 @@ import { NAV_ITEMS } from "../utils/types/SidebarCpnstant";
 import Accordian from "../pages/protectedpages/manger/components/Accordian";
 import { AiFillDashboard } from "react-icons/ai";
 import { ImUser } from "react-icons/im";
+import { useAppSelector } from "../store/hooks";
+import { selectCurrentToken } from "../store/slices/authSlice";
 
 interface NavItemProps {
     path: string;
@@ -131,6 +133,14 @@ const ProtectedLayout = () => {
     const [expandSideBar, setExpandSideBar] = useState(true);
 
     const [progress, setProgress] = useState(0);
+    const token = useAppSelector(selectCurrentToken);
+
+    useEffect(() => {
+        if (!token) {
+            navigate("/login");
+        }
+    }, []);
+
     return (
         <Box pos={"relative"}>
             <LoadingBar

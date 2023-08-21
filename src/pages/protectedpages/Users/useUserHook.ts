@@ -36,7 +36,7 @@ const useUserHook = () => {
 
     async function updateUserStatus(status: any): Promise<any> {
         try {
-            const response = await client.put(`/admin/user/status/${params.userId}`, { userStatus: status });
+            const response = await client.put(`/block/user/status/${params.userId}`, { userStatus: status });
             const updateStatus: UserProps[] = response.data?.data ?? [];
             return updateStatus;
         } catch (error: AxiosError | any) {

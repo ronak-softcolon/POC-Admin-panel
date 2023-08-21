@@ -1,8 +1,8 @@
 import { AiFillDashboard, AiOutlineSetting } from "react-icons/ai";
 import { Icon } from "@chakra-ui/react";
-import { ImUser } from "react-icons/im";
+import { BsCardImage, BsCash } from "react-icons/bs";
 import { FaBuromobelexperte, FaIndustry } from "react-icons/fa";
-import { MdOutlineAdminPanelSettings } from "react-icons/md";
+import { MdBlockFlipped, MdOutlineAdminPanelSettings } from "react-icons/md";
 
 export interface INavItem {
     id: number;
@@ -12,23 +12,29 @@ export interface INavItem {
 }
 
 export const NAV_ITEMS: Array<INavItem> = [
-    // {
-    //     id: 3,
-    //     icon: (color: string) => <Icon as={FaIndustry} w={4} h={4} color={color} />,
-    //     path: "/industry",
-    //     label: "industry"
-    // },
-    // {
-    //     id: 4,
-    //     icon: (color: string) => <Icon as={FaBuromobelexperte} w={4} h={4} color={color} />,
-    //     path: "/profession",
-    //     label: "職業"
-    // },
+    {
+        id: 4,
+        icon: (color: string) => <Icon as={MdBlockFlipped} w={4} h={4} color={color} />,
+        path: "/block-user",
+        label: "ブロックユーザー"
+    },
+    {
+        id: 3,
+        icon: (color: string) => <Icon as={BsCash} w={4} h={4} color={color} />,
+        path: "/cash-request",
+        label: "換金依頼"
+    },
     {
         id: 5,
         icon: (color: string) => <Icon as={AiOutlineSetting} w={4} h={4} color={color} />,
         path: "/setting",
         label: "設定"
+    },
+    {
+        id: 6,
+        icon: (color: string) => <Icon as={BsCardImage} w={4} h={4} color={color} />,
+        path: "/media",
+        label: "メディア"
     }
 ];
 
